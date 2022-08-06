@@ -1,6 +1,6 @@
 #container {
-  border: 48px solid red;
-  border-bottom: 80px solid red;
+  padding: 4px 32px 64px;
+  background: red;
   border-radius: 16px;
   display: inline-block;
 }
@@ -9,8 +9,18 @@
   border: 1px solid black;
   height: 10px;
   width: 10px;
+  transition: 0.7;
+  background: white;
 }
 
 .row {
   display: flex;
+}
+
+.settings {
+  padding: 4px 25px;
+  margin: 4px;
+  background: pink;
+  border: none;
+  border-radius: 4px;
 }

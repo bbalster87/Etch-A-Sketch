@@ -1,4 +1,6 @@
 // This script allows the user to play with an Etch-A-Sketch
+let width = 20
+let height = 40
 
 function createDrawingBoard (x, y) {
   // Creates a grid of divs that is N by N to be used as the drawing board
@@ -10,6 +12,7 @@ function createDrawingBoard (x, y) {
     for (let j = 0; j <= y; j++) {
       cell = document.createElement("div");
       cell.className = "cell";
+      cell.addEventListener("mouseover", colorSquare);
       row.appendChild(cell);
     }
     container.appendChild(row)
@@ -18,6 +21,7 @@ function createDrawingBoard (x, y) {
 
 function colorSquare () {
   // Colors the provided square black
+  this.style.backgroundColor = "black";
 }
 
 function moveCursor () {
@@ -29,8 +33,12 @@ function resetDrawing () {
   // Resets colors on all squares except currently selected
 }
 
-function setDrawingMode () {
+function setSettings () {
   // Toggle between mouse and keyboard drawing modes
+  console.log("success")
 }
 
-createDrawingBoard(20, 20);
+settings = document.querySelector(".settings");
+settings.addEventListener("click", setSettings);
+
+createDrawingBoard(height, width);
