@@ -11,8 +11,9 @@
 .cell {
   width: 100%;
   transition: 0.7;
-  background: white;
+  background: black;
   flex: 1 1 auto;
+  opacity: 0.0;
 }
 
 .row {
@@ -20,6 +21,7 @@
   flex: 1;
   height: 100%;
   align-items: stretch;
+  background: white;
 }
 
 .Btn {

@@ -1,12 +1,18 @@
 // This script allows the user to play with an Etch-A-Sketch
 const settingsForm = document.querySelector(".settingsForm");
-let width = 20
-let height = 40
+let width = 16
+let height = 16
 
 function createDrawingBoard (x, y) {
   // Creates a grid of divs that is N by N to be used as the drawing board
   // Returns the default starting position for the drawing cursor
-  console.log("Creating board")
+  if ( width > 100 || height > 100 ) {
+    alert("Specified size to large, reverting to defaults");
+    x = 16;
+    y = 16;
+    width = 16;
+    height = 16;
+  }
   const container = document.getElementById("container");
   for (let i = 0; i < x; i++) {
     const row = document.createElement("div");
@@ -23,7 +29,10 @@ function createDrawingBoard (x, y) {
 
 function colorSquare () {
   // Colors the provided square black
-  this.style.backgroundColor = "black";
+  //let color = Math.floor(Math.random()*16777215).toString(16)
+  //this.style.backgroundColor = "#" + color;
+  let opacity = window.getComputedStyle(this).getPropertyValue("opacity");
+  this.style.opacity = parseFloat(opacity) + 0.1;
 }
 
 function moveCursor () {
