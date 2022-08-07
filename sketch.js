@@ -6,11 +6,12 @@ let height = 40
 function createDrawingBoard (x, y) {
   // Creates a grid of divs that is N by N to be used as the drawing board
   // Returns the default starting position for the drawing cursor
-  container = document.getElementById("container");
-  for (let i = 0; i <= x; i++) {
+  console.log("Creating board")
+  const container = document.getElementById("container");
+  for (let i = 0; i < x; i++) {
     const row = document.createElement("div");
     row.className = "row";
-    for (let j = 0; j <= y; j++) {
+    for (let j = 0; j < y; j++) {
       cell = document.createElement("div");
       cell.className = "cell";
       cell.addEventListener("mouseover", colorSquare);
@@ -32,17 +33,21 @@ function moveCursor () {
 
 function resetDrawing () {
   // Resets colors on all squares except currently selected
+  removeDrawingBoard();
+  createDrawingBoard(height, width);
 }
 
 function removeDrawingBoard() {
+  // Removes the drawing board
+  console.log("Removing board")
   const cells = document.querySelectorAll(".cell");
   cells.forEach(cell => {
-    cell.remove();
+    cell.remove(); // Removes each cell on the board
   })
 
   const rows = document.querySelectorAll(".row");
   rows.forEach(row => {
-    row.remove()
+    row.remove() // Removes each row on the board
   })
 }
 
@@ -57,13 +62,15 @@ function setSettings () {
     if (document.getElementById("height").value > 0) {
       height = document.getElementById("height").value;
     }
-    settingsForm.removeAttribute("id")
-    removeDrawingBoard()
-    createDrawingBoard(height, width)
+    settingsForm.removeAttribute("id");
+    resetDrawing();
   })
 }
 
-const settingsBtn = document.querySelector(".settingsBtn");
+const settingsBtn = document.getElementById("settings");
 settingsBtn.addEventListener("click", setSettings);
 
-createDrawingBoard(height, width);
+const resetBtn = document.getElementById("reset");
+resetBtn.addEventListener("click", resetDrawing);
+
+resetDrawing();
