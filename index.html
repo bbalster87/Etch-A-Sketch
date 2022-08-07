@@ -9,7 +9,20 @@
 </head>
 <body>
   <div id="container">
-    <button class="settings">Settings</button>
+    <button class="settingsBtn">Settings</button>
+  </div>
+  <div class="settingsForm">
+    <form>
+      <div class="formRow">
+        <label for="width" class="formComponent">Width</label>
+        <input type="number" name="width" id="width" class="formComponent">
+        <label for="height" class="formComponent">Height</label>
+        <input type="number" name="height" id="height" class="formComponent">
+      </div>
+      <div class="formRow">
+        <input type="button" value="Submit" id="submit" class="formComponent">
+      </div>
+    </form>
   </div>
 </body>
 <script src="./sketch.js"></script>

@@ -1,4 +1,5 @@
 // This script allows the user to play with an Etch-A-Sketch
+const settingsForm = document.querySelector(".settingsForm");
 let width = 20
 let height = 40
 
@@ -33,12 +34,36 @@ function resetDrawing () {
   // Resets colors on all squares except currently selected
 }
 
-function setSettings () {
-  // Toggle between mouse and keyboard drawing modes
-  console.log("success")
+function removeDrawingBoard() {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach(cell => {
+    cell.remove();
+  })
+
+  const rows = document.querySelectorAll(".row");
+  rows.forEach(row => {
+    row.remove()
+  })
 }
 
-settings = document.querySelector(".settings");
-settings.addEventListener("click", setSettings);
+function setSettings () {
+  // Toggle between mouse and keyboard drawing modes
+  settingsForm.setAttribute("id", "show");
+  const submit = document.querySelector("#submit");
+  submit.addEventListener("click", () => {
+    if (document.getElementById("width").value > 0) {
+      width = document.getElementById("width").value;
+    }
+    if (document.getElementById("height").value > 0) {
+      height = document.getElementById("height").value;
+    }
+    settingsForm.removeAttribute("id")
+    removeDrawingBoard()
+    createDrawingBoard(height, width)
+  })
+}
+
+const settingsBtn = document.querySelector(".settingsBtn");
+settingsBtn.addEventListener("click", setSettings);
 
 createDrawingBoard(height, width);
