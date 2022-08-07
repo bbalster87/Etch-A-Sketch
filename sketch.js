@@ -4,21 +4,19 @@ let width = 16
 let height = 16
 let colorType = "COLOR"
 
-function createDrawingBoard (x, y) {
+function createDrawingBoard () {
   // Creates a grid of divs that is N by N to be used as the drawing board
   // Returns the default starting position for the drawing cursor
   if ( width > 100 || height > 100 ) {
     alert("Specified size to large, reverting to defaults");
-    x = 16;
-    y = 16;
     width = 16;
     height = 16;
   }
   const container = document.getElementById("board");
-  for (let i = 0; i < x; i++) {
+  for (let i = 0; i < height; i++) {
     const row = document.createElement("div");
     row.className = "row";
-    for (let j = 0; j < y; j++) {
+    for (let j = 0; j < width; j++) {
       cell = document.createElement("div");
       cell.className = "cell";
       cell.addEventListener("mouseover", colorSquare);
@@ -56,7 +54,7 @@ function moveCursor () {
 function resetDrawing () {
   // Resets colors on all squares except currently selected
   removeDrawingBoard();
-  createDrawingBoard(height, width);
+  createDrawingBoard();
 }
 
 function removeDrawingBoard() {
@@ -96,4 +94,4 @@ settingsBtn.addEventListener("click", setSettings);
 const resetBtn = document.getElementById("reset");
 resetBtn.addEventListener("click", resetDrawing);
 
-createDrawingBoard(height, width);
+createDrawingBoard();
