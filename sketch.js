@@ -2,6 +2,7 @@
 const settingsForm = document.querySelector(".settingsForm");
 let width = 16
 let height = 16
+let colorType = "COLOR"
 
 function createDrawingBoard (x, y) {
   // Creates a grid of divs that is N by N to be used as the drawing board
@@ -13,7 +14,7 @@ function createDrawingBoard (x, y) {
     width = 16;
     height = 16;
   }
-  const container = document.getElementById("container");
+  const container = document.getElementById("board");
   for (let i = 0; i < x; i++) {
     const row = document.createElement("div");
     row.className = "row";
@@ -28,11 +29,23 @@ function createDrawingBoard (x, y) {
 }
 
 function colorSquare () {
-  // Colors the provided square black
-  //let color = Math.floor(Math.random()*16777215).toString(16)
-  //this.style.backgroundColor = "#" + color;
-  let opacity = window.getComputedStyle(this).getPropertyValue("opacity");
-  this.style.opacity = parseFloat(opacity) + 0.1;
+  console.log(colorType)
+  if (colorType === "BLACK") colorSquareBlack(this);
+  else if (colorType === "COLOR") colorSquareRandom(this);
+  else console.log("Something went wrong")
+}
+
+function colorSquareBlack (cell) {
+  // Colors the provided square with progressively more black
+  let opacity = window.getComputedStyle(cell).getPropertyValue("opacity");
+  cell.style.opacity = parseFloat(opacity) + 0.1;
+}
+
+function colorSquareRandom (cell) {
+  // Colors the provided square with a random color
+  let color = Math.floor(Math.random()*16777215).toString(16)
+  cell.style.opacity = 1;
+  cell.style.backgroundColor = "#" + color;
 }
 
 function moveCursor () {
@@ -71,6 +84,7 @@ function setSettings () {
     if (document.getElementById("height").value > 0) {
       height = document.getElementById("height").value;
     }
+    colorType = document.querySelector('input[name="colorType"]:checked').value;
     settingsForm.removeAttribute("id");
     resetDrawing();
   })
@@ -82,4 +96,4 @@ settingsBtn.addEventListener("click", setSettings);
 const resetBtn = document.getElementById("reset");
 resetBtn.addEventListener("click", resetDrawing);
 
-resetDrawing();
+createDrawingBoard(height, width);

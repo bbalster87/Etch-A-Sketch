@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <title>Etch-A-Sketch</title>
 </head>
 <body>
@@ -13,6 +14,7 @@
       <button class="Btn" id="settings">Settings</button>
       <button class="Btn" id="reset">Reset</button>
     </div>
+    <div id="board"></div>
   </div>
   <div class="settingsForm">
     <form>
@@ -21,6 +23,12 @@
         <input type="number" name="width" id="width" class="formComponent" value=16>
         <label for="height" class="formComponent">Height</label>
         <input type="number" name="height" id="height" class="formComponent" value=16>
+      </div>
+      <div class="formRow">
+        <input type="radio" id="black" name="colorType" value="BLACK" checked="checked">
+        <label for="black">Black only</label>
+        <input type="radio" id="color" name="colorType" value="COLOR">
+        <label for="color">Random color</label>
       </div>
       <div class="formRow">
         <input type="button" value="Submit" id="submit" class="formComponent">

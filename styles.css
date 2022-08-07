@@ -6,6 +6,18 @@
   width: 768px;
   height: 512px;
   flex-direction: column;
+  border: 4px outset red;
+}
+
+#board {
+  display: flex;
+  width: 768px;
+  height: 512px;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 4px;
+  background: white;
+  border: 2px ridge red;
 }
 
 .cell {
